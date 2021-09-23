@@ -12,6 +12,7 @@ public class TokenRefreshService {
     @RefreshTokenAnnotation
     public void test1() throws NeedRefreshException {
 
+        System.out.println("test1 income");
         throw new NeedRefreshException("refresh 가즈아");
     }
 

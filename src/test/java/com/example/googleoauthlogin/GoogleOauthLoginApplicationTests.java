@@ -14,14 +14,14 @@ class GoogleOauthLoginApplicationTests {
     @Autowired
     private TokenRefreshService tokenRefreshService;
 
-    @Test
-    void test1() throws NeedRefreshException {
-        tokenRefreshService.test1();
-//        Assertions.assertThrows(NeedRefreshException.class, ()->  tokenRefreshService.test());
-    }
-
-    @Test
-    void test2() throws NeedRefreshException {
-        tokenRefreshService.test2(2, "2");
-    }
+//    @Test
+//    void test1() throws NeedRefreshException {
+//        tokenRefreshService.test1();
+////        Assertions.assertThrows(NeedRefreshException.class, ()->  tokenRefreshService.test());
+//    }
+//
+//    @Test
+//    void test2() throws NeedRefreshException {
+//        tokenRefreshService.test2(2, "2");
+//    }
 }

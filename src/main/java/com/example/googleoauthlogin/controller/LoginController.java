@@ -3,6 +3,7 @@ package com.example.googleoauthlogin.controller;
 import com.example.googleoauthlogin.dto.GoogleToken;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -33,6 +34,7 @@ public class LoginController {
         String redirect_uri = "http://localhost:8080/code";
         String grant_type = "authorization_code";
 
+        // https://accounts.google.com/o/oauth2/token
         HttpResponse<String> response = Unirest.post("https://oauth2.googleapis.com/token")
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .field("code", code)
@@ -44,6 +46,8 @@ public class LoginController {
 
         String body = response.getBody();
         GoogleToken googleToken = new ObjectMapper().readValue(body, GoogleToken.class);
+
+        GoogleCredential credential = new GoogleCredential().setAccessToken(googleToken.getAccess_token());
 
         return googleToken;
     }

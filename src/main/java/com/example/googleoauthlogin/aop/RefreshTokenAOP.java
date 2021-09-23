@@ -25,6 +25,8 @@ public class RefreshTokenAOP {
         Class[] objects = Arrays.stream(args).map(i -> i.getClass()).collect(Collectors.toList()).toArray(Class[]::new);
 
 
+
+
         Class targetClass = joinPoint.getTarget().getClass();
 
 //        ========
@@ -42,7 +44,11 @@ public class RefreshTokenAOP {
             method = targetClass.getMethod(methodName, objects);
             System.out.println("=================");
             TokenRefreshService tokenRefreshService = new TokenRefreshService();
-            method.invoke(tokenRefreshService, 3, "3");
+            if(args.length == 0){
+                method.invoke(tokenRefreshService);
+            }else {
+                method.invoke(tokenRefreshService, args);
+            }
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
